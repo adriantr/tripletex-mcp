@@ -21,16 +21,7 @@ You need two tokens from Tripletex:
 
 The server automatically creates a session token on first use (valid 1 day).
 
-### 2. Install
-
-```bash
-git clone https://github.com/your-org/tripletex-mcp.git
-cd tripletex-mcp
-npm install
-npm run build
-```
-
-### 3. Configure your MCP client
+### 2. Configure your MCP client
 
 Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 
@@ -38,8 +29,25 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 {
   "mcpServers": {
     "tripletex": {
-      "command": "node",
-      "args": ["/path/to/tripletex-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "tripletex-mcp"],
+      "env": {
+        "TRIPLETEX_CONSUMER_TOKEN": "<your-consumer-token>",
+        "TRIPLETEX_EMPLOYEE_TOKEN": "<your-employee-token>"
+      }
+    }
+  }
+}
+```
+
+Or to install from GitHub directly:
+
+```json
+{
+  "mcpServers": {
+    "tripletex": {
+      "command": "npx",
+      "args": ["-y", "github:adriantr/tripletex-mcp"],
       "env": {
         "TRIPLETEX_CONSUMER_TOKEN": "<your-consumer-token>",
         "TRIPLETEX_EMPLOYEE_TOKEN": "<your-employee-token>"
